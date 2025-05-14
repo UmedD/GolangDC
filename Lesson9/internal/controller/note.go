@@ -56,7 +56,7 @@ func GetByID() {
 	}
 
 	fmt.Printf("ID: %d, Title: %s\n", note.ID, note.Title)
-	fmt.Printf("CreatedAt: %s, UserID: %s\n", note.CreatedAt, note.Content)
+	fmt.Printf("CreatedAt: %s, UserID: %s\n", note.CreatedAt.Format("2006/1/2, 15:04 \n"), note.Content)
 
 }
 

@@ -1,6 +1,8 @@
-package controller
+package console
 
-import "fmt"
+import (
+	"fmt"
+)
 
 var Commands = `
 Выберите нужную команду:

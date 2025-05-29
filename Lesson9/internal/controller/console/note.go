@@ -1,4 +1,4 @@
-package controller
+package console
 
 import (
 	"GolangDC/Lesson9/internal/models"

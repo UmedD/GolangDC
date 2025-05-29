@@ -36,3 +36,13 @@ func DeleteById(id int) bool {
 	}
 	return false
 }
+
+func GetMaxID() int {
+	maxID := 0
+	for _, note := range noteList {
+		if note.ID > maxID {
+			maxID = note.ID
+		}
+	}
+	return maxID
+}

@@ -1,8 +1,9 @@
 package main
 
-import "GolangDC/Lesson9/internal/controller/rest"
+import "GolangDC/Lesson9/internal/controller/gin_rest"
 
 func main() {
-	rest.StartServer()
+	gin_rest.StartServer()
+	//http_rest.StartServer()
 	//console.RunCommands()
 }

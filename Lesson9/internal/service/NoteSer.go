@@ -39,3 +39,7 @@ func DeleteById(id int) bool {
 	}
 	return repository.DeleteById(id)
 }
+
+func UpdateAccount(note models.Note) error {
+	return repository.UpdateByID(note.ID, note)
+}

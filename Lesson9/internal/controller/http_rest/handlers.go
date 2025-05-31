@@ -1,4 +1,4 @@
-package rest
+package http_rest
 
 import (
 	"GolangDC/Lesson9/internal/models"

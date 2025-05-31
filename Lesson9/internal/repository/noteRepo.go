@@ -3,6 +3,7 @@ package repository
 import (
 	"GolangDC/Lesson9/internal/errors"
 	"GolangDC/Lesson9/internal/models"
+	"fmt"
 )
 
 func Create(note models.Note) models.Note {
@@ -35,6 +36,16 @@ func DeleteById(id int) bool {
 		}
 	}
 	return false
+}
+
+func UpdateByID(id int, updated models.Note) error {
+	for i, note := range noteList {
+		if note.ID == id {
+			noteList[i] = updated
+			return nil
+		}
+	}
+	return fmt.Errorf("note with ID %d not found", id)
 }
 
 func GetMaxID() int {

@@ -3,7 +3,7 @@ package gin_rest
 import (
 	errors2 "GolangDC/Lesson9/internal/errors"
 	"GolangDC/Lesson9/internal/models"
-	"GolangDC/Lesson9/internal/repository"
+	"GolangDC/Lesson9/internal/repository/MemoryRepo"
 	"GolangDC/Lesson9/internal/service"
 	"errors"
 	"fmt"
@@ -56,7 +56,7 @@ func CreateAccount(c *gin.Context) {
 		return
 	}
 
-	idSeq := repository.GetMaxID()
+	idSeq := MemoryRepo.GetMaxID()
 	idSeq++
 	note.ID = idSeq
 	note.CreatedAt = time.Now()
@@ -100,7 +100,7 @@ func UpdateAccount(c *gin.Context) {
 	}
 
 	var account models.Note
-	account, err = repository.GetByID(id)
+	account, err = MemoryRepo.GetByID(id)
 	if err != nil {
 		err = errors.Join(err, errors.New("invalid id"), errors2.ErrUserNotFound)
 		HandlerErr(c, err)

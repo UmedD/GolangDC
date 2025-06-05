@@ -1,4 +1,4 @@
-package repository
+package MemoryRepo
 
 import (
 	"GolangDC/Lesson9/internal/models"

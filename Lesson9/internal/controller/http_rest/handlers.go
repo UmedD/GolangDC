@@ -2,7 +2,7 @@ package http_rest
 
 import (
 	"GolangDC/Lesson9/internal/models"
-	"GolangDC/Lesson9/internal/repository"
+	"GolangDC/Lesson9/internal/repository/MemoryRepo"
 	"GolangDC/Lesson9/internal/service"
 	"encoding/json"
 	"fmt"
@@ -64,7 +64,7 @@ func CreateAccount(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid input", http.StatusBadRequest)
 		return
 	}
-	idSeq = repository.GetMaxID()
+	idSeq = MemoryRepo.GetMaxID()
 	idSeq++
 	note.ID = idSeq
 	note.CreatedAt = time.Now()

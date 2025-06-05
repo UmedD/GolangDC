@@ -3,6 +3,7 @@ package service
 import (
 	"GolangDC/Lesson9/internal/models"
 	"GolangDC/Lesson9/internal/repository"
+	"GolangDC/Lesson9/internal/repository/MemoryRepo"
 	"fmt"
 )
 
@@ -11,11 +12,17 @@ func Create(note models.Note) models.Note {
 		fmt.Println("Ошибка: Заголовок не может быть пустым.")
 		return note
 	}
-	return repository.Create(note)
+	ok, err := repository.CreateNote(note)
+	if err != nil {
+		fmt.Println("Ошибка при удалении:", err)
+		return note
+	}
+
+	return ok
 }
 
 func GetAll() ([]models.Note, error) {
-	accounts, err := repository.GetAll()
+	accounts, err := repository.GetAllAccounts()
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +31,7 @@ func GetAll() ([]models.Note, error) {
 }
 
 func GetByID(id int) (models.Note, error) {
-	note, err := repository.GetByID(id)
+	note, err := repository.GetAccountByID(id)
 	if err != nil {
 		return models.Note{}, err
 	}
@@ -37,9 +44,16 @@ func DeleteById(id int) bool {
 		fmt.Println("Некорректный ID")
 		return false
 	}
-	return repository.DeleteById(id)
+
+	ok, err := repository.DeleteByID(id)
+	if err != nil {
+		fmt.Println("Ошибка при удалении:", err)
+		return false
+	}
+
+	return ok
 }
 
 func UpdateAccount(note models.Note) error {
-	return repository.UpdateByID(note.ID, note)
+	return MemoryRepo.UpdateByID(note.ID, note)
 }
